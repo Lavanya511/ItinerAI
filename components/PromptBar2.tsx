@@ -6,7 +6,7 @@ import Analysebutton from './Analysebutton'
 function PromptBar2() {
 return (
     <div className='flex justify-center px-2 md:px-4'>
-        <Form className='flex flex-col items-center gap-2'>
+        <Form action='' className='flex flex-col items-center gap-2'>
             <input
                 type='text'
                 required
