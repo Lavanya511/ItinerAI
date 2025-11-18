@@ -1,11 +1,18 @@
+"use client";
+
 import React from 'react'
 import AgentIcon from './AgentIcon'
 import Image from 'next/image'
 import { features } from './utils/Features'
 import PromptBar from './PromptBar'
+import Footer from './Footer'
+import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 
 export default function HomeSection() {
+  const router = useRouter();
+
   return (
     <div className='min-h-screen flex flex-col items-center justify-center'>
         {/* main */}
@@ -21,19 +28,25 @@ export default function HomeSection() {
                     />
                 
                     <h1 className='text-3xl md:text-6xl font-bold max-w-6xl text-gray-900 mb-6'>
-                      Personalise Your Travel With {" "}
+                        Your Travel Deserves an {" "}
                       <span className='bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text text-transparent'>
                         Itiner<span className='text-amber-300'>ai</span>
                       </span>
                     </h1>
 
                     <p className='text-md md:text-xl text-gray-700 max-w-4xl mx-auto mb-8'>
-                    Make a perfect itinerary with Itiner<span className='italic'>ai</span> - your personal travel assistant that crafts customized itineraries, suggests hidden gems, and ensures a seamless travel experience from start to finish.                    </p>
+                      An effortless and refined travel shaped by your interests — with smarter itineraries, curated stays, and tailored recommendations.        
+                    </p>
 
 
-                    {/* Prompt Section */}
+                    {/* Redirect Section */}
 
-                    <PromptBar/>
+                    <Button
+                      onClick={() => router.push("/ai")}
+                      className="bg-amber-600 text-white text-lg px-8 py-6 rounded-lg hover:bg-amber-500 transition cursor-pointer"
+                    >
+                      Let's Go
+                    </Button>
 
                 </div>
             </div>
@@ -45,10 +58,10 @@ export default function HomeSection() {
         <section className='py-20 bg-white w-full'>
             <div className='container mx-auto px-4 max-w-6xl'>
                 <div className='container mx-auto px-4'>
-                    <h2 className='text-3xl font-bold text-center mb-12 text-gray-900'>Why Choose Travel AI?</h2>
+                    <h2 className='text-3xl font-bold text-center mb-20 md:mb-32 text-gray-700'>Why Travelers Trust Itinerai?</h2>
                 </div>
                 
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 md:mb-32'>
                   {features.map((feature, index) => {
                     const IconShape = feature.iconShape;
 
@@ -71,8 +84,8 @@ export default function HomeSection() {
 
 
         {/* footer */}
-        <section>
-            
+        <section className='min-w-full'>
+            <Footer/>
         </section>
 
     </div>

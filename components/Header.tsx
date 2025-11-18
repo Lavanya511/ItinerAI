@@ -30,11 +30,11 @@ function Header() {
                 {/* Right */}
                 <div className='flex items-center gap-4'>
                     <SignedIn>
-                        <Link href='/manage-plan' className=''>
+                        {/* <Link href='/manage-plan' className=''>
                             <Button variant={'outline'} className='mr-4 bg-gradient-to-r from-amber-600 to-amber-400 bg-clip-text text-transparent hover:text-orange-400 transition-colors cursor-pointer'>
                                 Manage Plan
                             </Button>
-                        </Link>
+                        </Link> */}
 
                         <div className='p-2 w-10 h-10 rounded-full flex justify-center items-center cursor-pointer border bg-blue-100 border-blue-200'>
                             <UserButton/>

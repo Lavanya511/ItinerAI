@@ -1,25 +1,42 @@
-import PromptBar from '@/components/PromptBar'
-import PromptBar2 from '@/components/PromptBar2'
-import React from 'react'
+"use client";
 
-function ResponsePage() {
+import React, { useEffect, useState } from "react";
+import PromptBar from '@/components/PromptBar';
+import Footer from "@/components/Footer";
+import Hotels from "@/components/Hotels";
+import Itinerary from "@/components/Itinerary";
+
+export default function ResponsePage() {
+  const [itinerary, setItinerary] = useState("");
+  const [hotels, setHotels] = useState("");
+
   return (
-    <div className='xl:container mx-auto px-4 md:px-8'>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+    <div className='xl:container mx-auto min-h-screen min-w-screen flex flex-col'>
 
-            {/* left */}
-            <div className='order-2 md:order-1 flex flex-col bg-white gap-4 md:border-r md:border-gray-200 p-6 md:p-12 h-screen'>
-                <PromptBar2/>
-            </div>
-
-            {/* right */}
-            <div className='order-1 md:order-2 flex flex-col bg-white gap-4 p-6 md:p-12 lg:sticky lg:top-20'>
-                ai res
-            </div>
-
+        <div className={itinerary ? 'flex justify-center items-center pt-8 mb:pt-4 pb-8 mb:pb-2' : 'flex h-200 md:h-150 justify-center items-center'}>
+            <PromptBar
+            onResult={(itinerary, hotels) => {
+                setItinerary(itinerary);
+                setHotels(hotels);
+            }}
+            />
         </div>
-    </div>
-  )
-}
+        
+        <div className={`p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-1200 ease-out 
+                ${itinerary ? "opacity-100" : "opacity-0"}`}>
+            <div className='order-2 md:order-1 flex flex-col shadow-lg border border-gray-200 p-4 md:p-8 lg:sticky lg:top-20 rounded-lg'>
+            <Hotels hotels={hotels} />
+            </div>
 
-export default ResponsePage
+            <div className='order-1 md:order-2 flex flex-col shadow-lg border border-gray-100 p-4 md:p-8 lg:sticky lg:top-20 rounded-lg'>
+            <Itinerary itinerary={itinerary} />
+            </div>
+        </div>
+
+        <div className="sticky top-full text-center">
+            <Footer/>
+        </div>
+
+    </div>
+  );
+}
